@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/ank26ity/demo-cicd.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Run App') {
+            steps {
+                sh 'pkill node || true'
+                sh 'nohup npm start &'
+            }
+        }
+
+        stage('Test API') {
+            steps {
+                sh 'sleep 3'
+                sh 'curl http://localhost:3000/health'
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CI/CD Demo</title>
+</head>
+<body>
+  <h1>🚀 CI/CD Demo Working</h1>
+  <p id="version"></p>
+
+  <script>
+    fetch('/version')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("version").innerText = "Version: " + data;
+      });
+  </script>
+</body>
+</html>
